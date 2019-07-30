@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head <%=data.helmet.htmlAttributes.toString()%>>
+    <%-data.helmet.title.toString()%>
+    <%-data.helmet.meta.toString()%>
+    <%-data.helmet.link.toString()%>
+    <%-data.styleTags%>
+</head>
+
+<body <%=data.helmet.bodyAttributes.toString()%>>
+  
+  <div id="root"><%-data.html%></div>
+  
+  <%- include('components/scripts'); -%>
+
+</body>
+</html>
