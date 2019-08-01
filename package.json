@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node configs/scripts/start.js",
-    "lint": "node configs/scripts/lint.js",
+    "lint": "eslint src/app -c configs/.eslintrc.js --ext .js,.jsx --ignore-path configs/.eslintignore",
     "test:client": "jest --config ./configs/jest.client.config.js --forceExit",
     "test:server": "jest --config ./configs/jest.server.config.js --forceExit",
     "test": "node configs/scripts/test.js",
@@ -60,6 +60,7 @@
     "@loadable/babel-plugin": "^5.8.0",
     "@loadable/webpack-plugin": "^5.7.1",
     "@storybook/react": "^5.0.11",
+    "@types/jest": "^24.0.16",
     "acorn": "^6.2.1",
     "acorn-jsx": "^5.0.1",
     "autoprefixer": "^9.5.0",
