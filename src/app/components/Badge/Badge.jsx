@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
  */
 export default function Badge(props) {
     return (
-        <div variant={props.variant} size={props.size} />
+        <div />
     );
 }
 
