@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
  * Badge component
  */
 export default function Badge(props) {
-    return (
-        <div />
-    );
+	return <div variant={props.variant} size={props.size} />;
 }
 
 Badge.propTypes = {
-    /** Variant of the badge, each variant has a unique style */
-    variant: PropTypes.string.isRequired,
-    /** Size of the badge, each size has a pre-defined number of font-size and padding and margin */
-    size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
+	/** Variant of the badge, each variant has a unique style */
+	variant: PropTypes.string.isRequired,
+	/** Size of the badge, each size has a pre-defined number of font-size and padding and margin */
+	size: PropTypes.oneOf([ 'small', 'medium', 'large' ]).isRequired
 };
