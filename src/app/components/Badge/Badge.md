@@ -1,7 +1,7 @@
 Example:
 ```jsx
 <Badge variant="primary" clickable size="small" type='numeric' isInverted>10000000  </Badge>
-<Badge variant="secondary" size="large" clickable isInverted>primary</Badge>
+<Badge variant="secondary" size="large" tag='' clickable isInverted>primary</Badge>
 <Badge variant="warning" size="large" type='numeric' clickable isInverted>10000</Badge>
 <Badge variant="error" size="small" clickable type='numeric' isInverted>10000</Badge>
 <Badge variant="" size="small" clickable type='numeric' isInverted>10000</Badge>

@@ -26,7 +26,7 @@ const Mytype = {
 const Mybadge = styled.span`
     display:inline-block;
     background: ${props => (props.isInverted || props.variant === 'default' ? 'white' : theme[props.variant][0])};
-    color: ${props => (props.isInverted ? theme[props.variant][0] : theme[props.variant][2])};
+    color: ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][0] : 'white')};
     font-size: ${props => (Mysize[props.size])};
     padding: 10px;
     border: 2px solid ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][1] : '')};
@@ -42,7 +42,7 @@ const Mybadge = styled.span`
     font-family:Sans-serif;
     :hover{
         background: ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][0] : 'white')};
-        color: ${props => (props.isInverted ? 'white' : theme[props.variant][0])};
+        color: ${props => (props.isInverted || props.variant === 'default' ? 'white' : theme[props.variant][0])};
         border-color: ${props => (props.isInverted || props.variant === 'default' ? '' : theme[props.variant][1])};
     }
 `;
