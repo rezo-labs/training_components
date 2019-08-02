@@ -1,0 +1,12 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import Badge from './Badge';
+
+storiesOf('Badge', module)
+    .add('Initial', () => (
+        <>
+        <Badge clickable variant='primary' size='medium' maxlength={100} >1</Badge>
+        
+        <Badge clickable variant='primary' size='large' maxlength={100} >1</Badge>
+        </>
+    ));
