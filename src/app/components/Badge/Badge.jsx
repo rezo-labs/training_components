@@ -5,60 +5,96 @@ import styled from 'styled-components';
 /**
  * Badge component
  */
-const Mybadge = styled.span`
-    display:inline-block;
-    background: ${props => (props.isInverted ? 'white' : theme[props.variant][0])};
-    color: ${props => (props.isInverted ? theme[props.variant][0] : theme[props.variant][1])};
-    font-size: ${props => (size[props.size])};
-    padding: 10px;
-    border: 2px solid ${props => (props.isInverted == true ? theme[props.variant][0] : '')};
-    border-radius:6px;
-    text-align:center;
-    margin-left:10px;
-    max-width:${props => (props.maxlength)+'px'};
-    font-weight:600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-transform: ${props => (type[props.type])};
-    pointer-events: ${props => (props.clickable ? '':'none')};
-`
 const theme = {
-    primary: ['#007bff','white'],
-    default: ['white','#ccccb3'],
-    secondary: ['#6c757d','white'],
-    info: ['#17a2b8','white'],
-    error: ['#ff1a1a','white'],
-    warning: ['#ffc107','white'],
-    success: ['#28a745','white'],
-    '' : ['white','black'],
-}
-const size = {
+    primary: ['#007bff', '#007bff'],
+    default: ['#d6d6c2', 'white'],
+    secondary: ['#6c757d', '#6c757d'],
+    info: ['#17a2b8', '#17a2b8'],
+    error: ['#ff1a1a', '#ff1a1a'],
+    warning: ['#ffc107', '#ffc107'],
+    success: ['#28a745', '#28a745'],
+    '': ['black', 'black'],
+};
+const Mysize = {
     small: '15px',
     medium: '25px',
     large: '35px',
-}
-const type ={
-    tag :'uppercase',
-    numeric : '',
-}
-export default function Badge(props) {
-    function onChange(){
-        console.log('click','u clicked this');
+};
+const Mytype = {
+    tag: 'uppercase',
+};
+const Mybadge = styled.span`
+    display:inline-block;
+    background: ${props => (props.isInverted || props.variant === 'default' ? 'white' : theme[props.variant][0])};
+    color: ${props => (props.isInverted ? theme[props.variant][0] : theme[props.variant][2])};
+    font-size: ${props => (Mysize[props.size])};
+    padding: 10px;
+    border: 2px solid ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][1] : '')};
+    border-radius:6px;
+    text-align:center;
+    margin-left:10px;
+    max-width:${props => (props.maxLength ? `${props.maxLength}px` : '')};
+    font-weight:600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: ${props => (Mytype[props.type])};
+    pointer-events: ${props => (props.clickable ? '' : 'none')};
+    font-family:Sans-serif;
+    :hover{
+        background: ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][0] : 'white')};
+        color: ${props => (props.isInverted ? 'white' : theme[props.variant][0])};
+        border-color: ${props => (props.isInverted || props.variant === 'default' ? '' : theme[props.variant][1])};
     }
-//    console.log("props123",props);
-   console.log('props123',props.children)
+`;
 
+export default function Badge(props) {
+    function onChange() {
+    }
+
+    function formatNumber(num) {
+        if (num >= 10000000) {
+            return '10M';
+        }
+        return num;
+    }
+    const {
+        clickable, variant, size, type, maxLength, isInverted, children,
+    } = props;
+    if (type === 'numeric') {
+        const num = formatNumber(parseInt(props.children, 10));
+        return (
+            <Mybadge
+                clickable={clickable}
+                variant={variant}
+                type={type}
+                size={size}
+                maxLength={maxLength}
+                isInverted={isInverted}
+                onClick={onChange}
+            >
+                {num}
+            </Mybadge>
+        );
+    }
     return (
-        <Mybadge clickable={props.clickable} variant = {props.variant} type = {props.type} size = {props.size} maxlength ={props.maxlength} isInverted={props.isInverted} onClick={onChange}>
-            {props.children}
+        <Mybadge
+            clickable={clickable}
+            variant={variant}
+            type={type}
+            size={size}
+            maxLength={maxLength}
+            isInverted={isInverted}
+            onClick={onChange}
+        >
+            {children}
         </Mybadge>
     );
-    
 }
 
 Badge.propTypes = {
     /** Variant of the badge, each variant has a unique style */
     variant: PropTypes.string.isRequired,
     /** Size of the badge, each size has a pre-defined number of font-size and padding and margin */
+    // eslint-disable-next-line react/no-unused-prop-types
     size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 };
