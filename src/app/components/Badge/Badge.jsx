@@ -34,7 +34,7 @@ const Mybadge = styled.span`
     text-align:center;
     margin-left:10px;
     max-width:${props => (props.maxLength ? `${props.maxLength}px` : '')};
-    font-weight:600;
+    font-weight:650;
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: ${props => (Mytype[props.type])};
