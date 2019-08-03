@@ -95,6 +95,5 @@ Badge.propTypes = {
     /** Variant of the badge, each variant has a unique style */
     variant: PropTypes.string.isRequired,
     /** Size of the badge, each size has a pre-defined number of font-size and padding and margin */
-    // eslint-disable-next-line react/no-unused-prop-types
     size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
 };
