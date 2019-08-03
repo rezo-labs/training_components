@@ -6,6 +6,6 @@ storiesOf('Badge', module)
     .add('Initial', () => (
         <>
             <Badge clickable variant="primary" size="small" maxlength={100}>1</Badge>
-            <Badge clickable variant="primary" size="medium" maxlength={100}>1</Badge>
+            <Badge clickable variant="primary" size="medium" maxlength={200}>1</Badge>
         </>
     ));
