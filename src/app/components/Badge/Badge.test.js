@@ -5,7 +5,7 @@ import Badge from './Badge';
 
 describe('Badge', () => {
     // eslint-disable-next-line no-unused-vars
-    const wrapper = shallow(<Badge variant="primary" size="small"> Primary</Badge>);
+    const wrapper = shallow(<Badge />);
 
     it('', () => {
         //
