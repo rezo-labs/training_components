@@ -4,7 +4,8 @@ import { shallow } from 'enzyme';
 import Badge from './Badge';
 
 describe('Badge', () => {
-    const wrapper = shallow(<Badge />);
+    // eslint-disable-next-line no-unused-vars
+    const wrapper = shallow(<Badge variant="primary" size="small"> Primary</Badge>);
 
     it('', () => {
         //
