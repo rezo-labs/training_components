@@ -60,4 +60,4 @@ workflows:
             - build
           filters:
             branches:
-              only: /*-final/
+              only: /.+-final/
