@@ -33,27 +33,23 @@ jobs:
       - run:
           name: Run Tests
           command: yarn test:client
+      - run:
+          name: Build Styleguidist
+          command: yarn styleguidist:build
+      - persist_to_workspace:
+          root: styleguide
+          paths: *
   deploy:
     docker:
       - image: circleci/node:8
 
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+      - attach_workspace:
+          at: styleguide
       - run:
           name: Install Surge globally
           command: sudo npm install -g surge
-      - run:
-          name: Build Styleguidist
-          command: yarn styleguidist:build
       - run:
           name: Deploy to Surge
           command: |
