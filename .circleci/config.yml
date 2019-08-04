@@ -39,7 +39,8 @@ jobs:
       - persist_to_workspace:
           root: styleguide
           paths:
-            - *
+            - index.html
+            - build
   deploy:
     docker:
       - image: circleci/node:8
