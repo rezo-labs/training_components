@@ -52,7 +52,7 @@ jobs:
           name: Deploy to Surge
           command: |
             echo "Deploying to rezo-${CIRCLE_BRANCH/_/}.surge.sh"
-            surge --project ./styleguide --domain rezo-$(echo "${CIRCLE_BRANCH/_/}").surge.sh
+            ./node_modules/.bin/surge --project ./styleguide --domain rezo-$(echo "${CIRCLE_BRANCH/_/}").surge.sh
 
 workflows:
   version: 2
