@@ -78,9 +78,9 @@ export default function Avatar(props) {
                 <Mydiv
                     size={size}
                     clickable={clickable}
+                    onClick={onClick}
                 >
                     <Myavatar
-                        onClick={onClick}
                         name={name}
                         src={imageUrl}
                         size={size}
@@ -96,9 +96,9 @@ export default function Avatar(props) {
             <Mydiv
                 size={size}
                 clickable={clickable}
+                onClick={onClick}
             >
                 <AvataNoUrl
-                    onClick={onClick}
                     name={name}
                     status={status}
                     size={size}
