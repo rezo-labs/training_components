@@ -58,7 +58,9 @@ export default function Badge(props) {
         return num;
     }
 
-    const { clickable, variant, size, type, maxLength, isInverted, children, onChange } = props;
+    const {
+        clickable, variant, size, type, maxLength, isInverted, children, onChange,
+    } = props;
 
     if (type === 'numeric') {
         const num = formatNumber(parseInt(props.children, 10));
