@@ -23,6 +23,7 @@ const Mysize = {
 };
 const Mytype = {
     tag: 'uppercase',
+    numeric: 'number',
 };
 
 const Mybadge = styled.span`
@@ -50,23 +51,43 @@ const Mybadge = styled.span`
 `;
 
 export default function Badge(props) {
-    function onChange() {
-        console.log('click', 'u clicked this');
+    function formatNumber(num) {
+        if (num >= 10000000) {
+            return '10M';
+        }
+        return num;
     }
-    //    console.log("props123",props);
-    console.log('props123', props.children);
+
+    const { clickable, variant, size, type, maxLength, isInverted, children, onChange } = props;
+
+    if (type === 'numeric') {
+        const num = formatNumber(parseInt(props.children, 10));
+        return (
+            <Mybadge
+                clickable={clickable}
+                variant={variant}
+                type={type}
+                size={size}
+                maxLength={maxLength}
+                isInverted={isInverted}
+                onClick={onChange}
+            >
+                {num}
+            </Mybadge>
+        );
+    }
 
     return (
         <Mybadge
-            clickable={props.clickable}
-            variant={props.variant}
-            type={props.type}
-            size={props.size}
-            maxlength={props.maxlength}
-            isInverted={props.isInverted}
+            clickable={clickable}
+            variant={variant}
+            type={type}
+            size={size}
+            maxlength={maxLength}
+            isInverted={isInverted}
             onClick={onChange}
         >
-            {props.children}
+            {children}
         </Mybadge>
     );
 }

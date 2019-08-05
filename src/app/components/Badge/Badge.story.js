@@ -5,7 +5,7 @@ import Badge from './Badge';
 storiesOf('Badge', module)
     .add('Initial', () => (
         <>
-            <Badge clickable variant="primary" size="small" maxlength={100}>Primary</Badge>
+            <Badge clickable variant="primary" size="small" maxlength={100} type="numeric">10000000</Badge>
             <Badge clickable variant="default" size="small" maxlength={100}>Default</Badge>
             <Badge clickable variant="secondary" size="medium" maxlength={100}>Secondary</Badge>
             <Badge clickable variant="info" size="medium" maxlength={100}>Info</Badge>
