@@ -3,6 +3,5 @@
         "configFile": "./configs/.eslintrc.js",
         "ignorePath": "./configs/.eslintignore"
     },
-    "todo-tree.rootFolder": "${workspaceFolder}/src",
-    "prettier.useTabs": false
+    "todo-tree.rootFolder": "${workspaceFolder}/src"
 }
