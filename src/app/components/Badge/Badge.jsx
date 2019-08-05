@@ -48,9 +48,6 @@ const Mybadge = styled.span`
 `;
 
 export default function Badge(props) {
-    function onChange() {
-    }
-
     function formatNumber(num) {
         if (num >= 10000000) {
             return '10M';
@@ -58,7 +55,7 @@ export default function Badge(props) {
         return num;
     }
     const {
-        clickable, variant, size, type, maxLength, isInverted, children,
+        clickable, variant, size, type, maxLength, isInverted, children, onClick,
     } = props;
     if (type === 'numeric') {
         const num = formatNumber(parseInt(props.children, 10));
@@ -70,7 +67,7 @@ export default function Badge(props) {
                 size={size}
                 maxLength={maxLength}
                 isInverted={isInverted}
-                onClick={onChange}
+                onClick={onClick}
             >
                 {num}
             </Mybadge>
@@ -84,7 +81,7 @@ export default function Badge(props) {
             size={size}
             maxLength={maxLength}
             isInverted={isInverted}
-            onClick={onChange}
+            onClick={onClick}
         >
             {children}
         </Mybadge>
