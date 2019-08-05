@@ -21,3 +21,6 @@ logs/*
 
 # Coverage
 coverage
+
+# Styleguidist
+styleguide
