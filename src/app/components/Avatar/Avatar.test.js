@@ -21,7 +21,7 @@ describe('Avatar', () => {
     it('Call function on click', () => {
         const mockOnClick = jest.fn();
         const wrapper = mount(<Avatar name="D" status="online" size="small" onClick={mockOnClick} />);
-        wrapper.find('img').first().simulate('click');
+        wrapper.find('div').first().simulate('click');
         expect(mockOnClick).toHaveBeenCalledTimes(1);
     });
 });

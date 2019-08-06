@@ -4,5 +4,5 @@ import Avatar from './Avatar';
 
 storiesOf('Avatar', module)
     .add('Initial', () => (
-        <Avatar />
+        <Avatar clickable name="duy nguyen" status="online" size="small" />
     ));
