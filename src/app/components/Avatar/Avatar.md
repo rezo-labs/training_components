@@ -1,5 +1,5 @@
 Example:
 ```jsx
-<Avatar name="D" status="online" size="small" />
-<Avatar clickable name="D" status="online" size="small" />
+<Avatar name="Hoa Do" status="online" size="small" />
+<Avatar clickable name="Minh Hoa Do" status="offline" size="small" />
 ```
