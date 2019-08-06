@@ -16,10 +16,14 @@ const theme = {
 };
 
 const Myavatar = styled.img`
-    width :inherit;
-    height:inherit;
+    width :100%;
+    height:100%;
     border-radius:50%;
     padding:1px;
+    object-fit:cover;
+    float:none;
+    position: relative;
+    left:0;  
 `;
 const Mydiv = styled.div`
     margin-bottom:20px;
@@ -39,18 +43,25 @@ const DivStatus = styled.div`
 `;
 
 const AvataNoUrl = styled.div`
-    background: #50a366;
+    /* background: #50a366; */
     color: white;
     width :inherit;
     height:inherit;
     border-radius:50%;
     font-family:Arial;
+    background: #50a366;
 `;
 
 const DivText = styled.div`
     font-size: ${props => (Mysize[props.size][1])};
-    padding: 0.4em;
     text-transform: uppercase;
+    position:relative;
+    top:50%;
+    text-align:center;
+    transform: translateY(-50%);
+    width:100%;
+    height:fit-content;
+    pointer-events:none;
 `;
 function formatText(str) {
     const splitText = str.split(' '); let i; let sliceText = '';
@@ -69,7 +80,6 @@ export default function Avatar(props) {
     const {
         clickable, onClick, name, imageUrl, status, size,
     } = props;
-    console.log('event', props.onClick);
     if (name) {
         const sliceText = formatText(name);
 
