@@ -84,40 +84,31 @@ export default function Avatar(props) {
     } = props;
     if (name) {
         const sliceText = formatText(name);
-        if (imageUrl) {
-            return (
-                <Mydiv
-                    size={size}
-                    clickable={clickable}
-                    onClick={onClick}
-                >
-                    <Myavatar
-                        name={name}
-                        src={imageUrl}
-                        size={size}
-                    />
-                    <DivStatus
-                        size={size}
-                        status={status}
-                    />
-                </Mydiv>
-            );
-        }
         return (
             <Mydiv
                 size={size}
                 clickable={clickable}
                 onClick={onClick}
             >
-                <AvataNoUrl
-                    name={name}
-                    status={status}
-                    size={size}
-                >
-                    <DivText size={size}>
-                        {sliceText}
-                    </DivText>
-                </AvataNoUrl>
+                {imageUrl
+                    ? (
+                        <Myavatar
+                            name={name}
+                            src={imageUrl}
+                            size={size}
+                        />
+                    )
+                    : (
+                        <AvataNoUrl
+                            name={name}
+                            status={status}
+                            size={size}
+                        >
+                            <DivText size={size}>
+                                {sliceText}
+                            </DivText>
+                        </AvataNoUrl>
+                    )}
                 <DivStatus
                     size={size}
                     status={status}
