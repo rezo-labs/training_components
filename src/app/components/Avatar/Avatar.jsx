@@ -94,25 +94,35 @@ export default function Avatar(props) {
 
     if (name) {
         const sliceText = formatText(name);
-
-        if (imageUrl) {
-            return (
-                <Mydiv size={size} clickable={clickable} onClick={onClick}>
-                    <Myavatar name={name} src={imageUrl} size={size} />
-                    <DivStatus size={size} status={status} />
-                </Mydiv>
-            );
-        }
         return (
-            <Mydiv size={size} clickable={clickable} onClick={onClick}>
-                <AvatarNoUrl name={name} status={status} size={size}>
-                    <DivText name={name} size={size}>{sliceText}</DivText>
-                </AvatarNoUrl>
+            <Mydiv
+                size={size}
+                clickable={clickable}
+                onClick={onClick}
+            >
+                {imageUrl
+                    ? (
+                        <Myavatar
+                            name={name}
+                            src={imageUrl}
+                            size={size}
+                        />
+                    )
+                    : (
+                        <AvatarNoUrl
+                            name={name}
+                            status={status}
+                            size={size}
+                        >
+                            <DivText size={size}>{sliceText}</DivText>
+                        </AvatarNoUrl>
+                    )}
                 <DivStatus size={size} status={status} />
             </Mydiv>
         );
     }
 }
+
 
 Avatar.defaultProps = {
     clickable: false,
