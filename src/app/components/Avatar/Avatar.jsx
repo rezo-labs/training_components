@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+
 const Mysize = {
     xsmall: ['50px', '1.5em', '33%', '72%', '2.5px'],
     small: ['100px', '3em', '26%', '72%', '3px'],
@@ -29,7 +30,8 @@ const Mydiv = styled.div`
     margin-bottom:20px;
     width: ${props => (Mysize[props.size][0])};
     height: ${props => (Mysize[props.size][0])};
-    pointer-events: ${props => (props.clickable === true ? '' : 'none')};
+    /* pointer-events: ${props => (props.clickable === true ? '' : 'none')}; */
+    cursor: ${props => (props.clickable === true ? 'pointer' : '')};
 `;
 const DivStatus = styled.div`
     position: relative;
@@ -82,7 +84,6 @@ export default function Avatar(props) {
     } = props;
     if (name) {
         const sliceText = formatText(name);
-
         if (imageUrl) {
             return (
                 <Mydiv
