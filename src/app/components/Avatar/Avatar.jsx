@@ -69,7 +69,6 @@ const DivText = styled.div`
 `;
 
 function formatText(str) {
-    console.log('event', str);
     const splitText = str.split(' ');
     let i;
     let sliceText = '';
@@ -92,10 +91,10 @@ export default function Avatar(props) {
     const {
         clickable, onClick, name, imageUrl, status, size,
     } = props;
-    console.log('event', props.name);
+
     if (name) {
         const sliceText = formatText(name);
-        console.log('event', sliceText);
+
         if (imageUrl) {
             return (
                 <Mydiv size={size} clickable={clickable} onClick={onClick}>
