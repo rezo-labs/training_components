@@ -78,21 +78,13 @@ function formatText(str) {
     }
     return sliceText;
 }
-function testImage() {
-    const testImg = new Image();
-    if (testImg.onload) {
-        return true;
-    }
-    return false;
-}
 export default function Avatar(props) {
     const {
         clickable, onClick, name, imageUrl, status, size,
     } = props;
     if (name) {
         const sliceText = formatText(name);
-        if (testImage() === true) {
-            console.log('testImage', testImage(imageUrl));
+        if (imageUrl) {
             return (
                 <Mydiv
                     size={size}
