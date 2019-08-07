@@ -39,6 +39,7 @@ const Mybadge = styled.span`
     text-overflow: ellipsis;
     text-transform: ${props => (Mytype[props.type])};
     pointer-events: ${props => (props.clickable ? '' : 'none')};
+    cursor: ${props => (props.clickable ? 'pointer' : '')};
     font-family:Sans-serif;
     :hover{
         background: ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][0] : 'white')};
