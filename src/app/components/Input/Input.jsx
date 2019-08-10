@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import warringSVG from './assets/warning.svg';
 import successSVG from './assets/success.svg';
 import errorSVG from './assets/error.svg';
@@ -135,5 +136,44 @@ export default function Input(props) {
             </Mydiv>
         );
     }
-    return null;
 }
+Input.defaultProps = {
+    variant: 'default',
+    isDisable: false,
+    onBlur: null,
+    onChange: null,
+    onMouseDown: null,
+    onFocus: null,
+    id: null,
+    label: null,
+    helpText: null,
+    placeholder: null,
+    value: null,
+    defaultValue: null,
+};
+Input.propTypes = {
+    /* Required value */
+    /** User's Type */
+    type: PropTypes.oneOf(['number', 'text', 'password']).isRequired,
+    /* optional value */
+    /** User's variant */
+    variant: PropTypes.oneOf(['default', 'minimal', 'autofill', 'focus']),
+    /** User's status */
+    status: PropTypes.oneOf(['warning', 'error', 'success']),
+    /** User's isDisable is optional but it's the first priority in render */
+    isDisable: PropTypes.bool,
+    /* String value */
+    id: PropTypes.string,
+    label: PropTypes.string,
+    helpText: PropTypes.string,
+    placeholder: PropTypes.string,
+    /* Event propTypes: */
+    /** Function called when user presses a mouse over the input  */
+    onMouseDown: PropTypes.func,
+    /** Function called when user leaves the input after focusing. */
+    onBlur: PropTypes.func,
+    /** Function called when the value of the input has been changed */
+    onChange: PropTypes.func,
+    /** Function called when the input get focus. */
+    onFocus: PropTypes.func,
+};
