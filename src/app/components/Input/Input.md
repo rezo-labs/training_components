@@ -31,5 +31,21 @@
 ```jsx
 <Input variant ='focus' label = 'Type text' helpText='help text here!' placeholder='this is place holder' type = 'text'/>
 ```
+## 7. check onBlur event:
+```jsx
+<Input status='warning' label = 'Type text' helpText='Help text here!' placeholder='this is place holder' type = 'text' onBlur={event => alert('you have left the input ...')}/>
+```
+## 8. check onChange event:
+```jsx
+<Input status='success' label = 'Type text' helpText='Help text here!' placeholder='this is place holder' type = 'text' onChange={ event => alert('you have Changed the input ...')  }/>
+```
+## 9. check onMouseDown event:
+```jsx
+<Input status='error' label = 'Type text' helpText='Help text here!' placeholder='this is place holder' type = 'text' onMouseDown={ event => alert('MouseDown event is started ')  }/>
+```
+## 10. check onFocus event:
+```jsx
+<Input status='warning' label = 'Type text' helpText='Help text here!' placeholder='this is place holder' type = 'text' onFocus={ event => alert('you have focused the input ...')  }/>
+```
 
 
