@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import warringSVG from './assets/warning.svg';
+import successSVG from './assets/success.svg';
+import errorSVG from './assets/error.svg';
 
 const theme = {
     minimal: ['transparent', '#000000', 'white'],
@@ -48,11 +51,18 @@ const Mydiv = styled.div`
     margin-bottom:10px;
     font-weight:500;
 `;
-const Myspan = styled.span`
+const Myimg = styled.img`
     margin-right:5px;
+    object-fit:cover;
+    width:20px;
+    height:20px;
 `;
 const Helptext = styled.div`
-    color: ${props => (props.status ? themeStatus[props.status][0] : theme.default[1])};
+    color: ${props => (props.status ? themeStatus[props.status][0] : theme.default[1])};  
+    display:flex;
+    line-height:20px;
+`;
+const Divtext = styled.span`
     font-size: 15px;
 `;
 export default function Input(props) {
@@ -105,8 +115,16 @@ export default function Input(props) {
                     <Helptext
                         status={status}
                     >
-                        <Myspan>:icon</Myspan>
-                        {helpText}
+                        {status === 'warning'
+                            ? (<Myimg src={warringSVG} />)
+                            : status === 'success'
+                                ? (<Myimg src={successSVG} />)
+                                : status === 'error'
+                                    ? (<Myimg src={errorSVG} />) : null
+                        }
+                        <Divtext>
+                            {helpText}
+                        </Divtext>
                     </Helptext>
                 ) : null
                 }

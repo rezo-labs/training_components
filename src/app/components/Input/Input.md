@@ -1,9 +1,9 @@
 # ---My Input
 ## 1. Input status:
 ```jsx
-<Input status='warning' label = 'This is label' helpText='help text here!' type = 'text'/>
-<Input status='success' label = 'This is label' helpText='help text here!' type = 'text'/>
-<Input status='error' label = 'This is label' helpText='help text here!' type = 'text'/>
+<Input status='warning' label = 'This is label' helpText='Help text here!' type = 'text'/>
+<Input status='success' label = 'This is label' helpText='Help text here!' type = 'text'/>
+<Input status='error' label = 'This is label' helpText='Help text here!' type = 'text'/>
 ```
 ## 2. devaultValue - value:
 ```jsx
