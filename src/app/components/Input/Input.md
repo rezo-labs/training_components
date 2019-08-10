@@ -15,7 +15,6 @@
 <Input variant ='default' label = 'default:' type = 'text'/>
 <Input variant='autofill' label = 'autofill:' type = 'text'/>
 <Input variant='minimal' label = 'minimal:' type = 'text'/>
-<Input variant='hover' label = 'hover:' type = 'text'/>
 <Input variant='focus' label = 'focus:' type = 'text'/>
 ```
 ## 4. isDisable:

@@ -9,7 +9,6 @@ const theme = {
     compact: ['', '#000000', 'white'],
     default: ['#cccccc', '#808080', 'white'],
     autofill: ['transparent', '#000000', '#e6ffe6'],
-    hover: ['#cccccc', '#000000', '#e1e1d0'],
     focus: ['#0099ff', '#000000', 'white'],
 };
 const themeStatus = {
@@ -37,6 +36,11 @@ const Myinput = styled.input`
         border: 3px solid #0099ff;
         background: white;
         color:black;
+    };
+    :hover{
+        color: #000000;
+        background: #e1e1d0;
+        border: 3px solid #cccccc;
     };
 `;
 
