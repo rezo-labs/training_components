@@ -148,8 +148,7 @@ Input.defaultProps = {
     label: null,
     helpText: null,
     placeholder: null,
-    value: null,
-    defaultValue: null,
+    defaultInput: '',
 };
 Input.propTypes = {
     /* Required value */
