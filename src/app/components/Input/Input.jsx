@@ -136,6 +136,7 @@ export default function Input(props) {
             </Mydiv>
         );
     }
+    return null;
 }
 Input.defaultProps = {
     variant: 'default',
@@ -148,7 +149,7 @@ Input.defaultProps = {
     label: null,
     helpText: null,
     placeholder: null,
-    defaultInput: '',
+    status: null,
 };
 Input.propTypes = {
     /* Required value */
