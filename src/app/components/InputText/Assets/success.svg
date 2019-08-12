@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8,14 C4.6862915,14 2,11.3137085 2,8 C2,4.6862915 4.6862915,2 8,2 C11.3137085,2 14,4.6862915 14,8 C14,11.3137085 11.3137085,14 8,14 Z M6.47140452,7.52859548 C6.21105499,7.26824595 5.78894501,7.26824595 5.52859548,7.52859548 C5.26824595,7.78894501 5.26824595,8.21105499 5.52859548,8.47140452 L6.86192881,9.80473785 C7.12227834,10.0650874 7.54438833,10.0650874 7.80473785,9.80473785 L10.4714045,7.13807119 C10.731754,6.87772166 10.731754,6.45561167 10.4714045,6.19526215 C10.211055,5.93491262 9.78894501,5.93491262 9.52859548,6.19526215 L7.33333333,8.39052429 L6.47140452,7.52859548 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="_part-/--𝚃-Help-text-/-Success" transform="translate(-2.000000, -2.000000)">
+            <g id="standard/action/check-circle">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Combined-Shape" fill="#42526E" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <g id="Green-/-G400" mask="url(#mask-2)" fill="#00875A" fill-rule="evenodd">
+                    <rect id="G400" x="0" y="0" width="16" height="16"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
