@@ -32,6 +32,8 @@ const Mydiv = styled.div`
     height: ${props => (Mysize[props.size][0])};
     /* pointer-events: ${props => (props.clickable === true ? '' : 'none')}; */
     cursor: ${props => (props.clickable === true ? 'pointer' : '')};
+    display:inline-block;
+    margin-right:20px;
 `;
 const DivStatus = styled.div`
     position: relative;
