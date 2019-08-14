@@ -1,9 +1,9 @@
-# my Pagination
-## Basic pagination:
+# My Pagination
+## 1. Basic pagination:
 ```jsx
 <Pagination total={60}/>
 ```
-## Custom pagination:
+## 2. Custom pagination:
 ```jsx
 <Pagination 
     total = {40}
@@ -11,7 +11,7 @@
 	max = {7} 
 />
 ```
-## Maximum items:
+## 3. Maximum items:
 ```jsx
 <Pagination
     total = {90}
@@ -19,8 +19,8 @@
     current = {9}
 />
 ```
-## Truncate
-### Truncate 1:
+## 4. Truncate
+### 4.1. Truncate 1:
 ```jsx
 <Pagination
   total = {200}
@@ -28,7 +28,7 @@
   current = {1}
 />
 ```
-### Truncate 2:
+### 4.2 Truncate 2:
 ```jsx
 <Pagination
   total = {200}
@@ -36,7 +36,7 @@
   current = {13}
 />
 ```
-### Truncate 3:
+### 4.3 Truncate 3:
 ```jsx
 <Pagination
     total = {200}
