@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input snapshot testing 1`] = `
+<div
+  className="Input__Mydiv-b788xn-2 hNWqxr"
+>
+  <label
+    className="Input__Mylabel-b788xn-1 hltnNq"
+  >
+    snapshot's using label
+  </label>
+  <input
+    className="Input__Myinput-b788xn-0 kBbxPJ"
+    id={null}
+    onBlur={null}
+    onChange={null}
+    onFocus={null}
+    onMouseDown={null}
+    placeholder={null}
+    type="text"
+  />
+  <div
+    className="Input__Helptext-b788xn-4 fEoPYl"
+  >
+    <img
+      className="Input__Myimg-b788xn-3 dWfZvU"
+      src="test-file-stub"
+    />
+    <span
+      className="Input__Divtext-b788xn-5 jkxnH"
+    >
+      helpText Snapshot testing
+    </span>
+  </div>
+</div>
+`;
