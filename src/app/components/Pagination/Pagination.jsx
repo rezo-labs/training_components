@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropsType from 'prop-types';
 
 const theme = {
     default: ['white', 'black'],
@@ -7,6 +8,9 @@ const theme = {
 const Myul = styled.ul`
     list-style-type:none;
     display:flex;
+`;
+const HandleError = styled.h1`
+    color: red;
 `;
 const Li = styled.li`
     padding: 8px;
@@ -41,16 +45,16 @@ export default function Pagination(props) {
             totalArray[i] = i + 1;
         }
     }
-    function addLiElement(e, checkActive) {
+    function addLiElement(e, eKeyValue, checkActive) {
         if (checkActive === true) {
-            return <Li variant={variant} active>{e}</Li>;
+            return <Li variant={variant} active key={eKeyValue}>{e}</Li>;
         }
-        return <Li variant={variant}>{e}</Li>;
+        return <Li variant={variant} key={eKeyValue}>{e}</Li>;
     }
     const arrCheckCurrent = totalArray.map((_e, eindex) => (
         current - 1 === eindex
-            ? addLiElement(totalArray[eindex], true)
-            : addLiElement(totalArray[eindex])
+            ? addLiElement(totalArray[eindex], eindex, true)
+            : addLiElement(totalArray[eindex], eindex)
     ));
     function cutArray(...Arr) {
         if (arrayLength > max) {
@@ -59,8 +63,8 @@ export default function Pagination(props) {
                 return (
                     <>
                         { arrayLi }
-                        {addLiElement('...')}
-                        {addLiElement(totalArray[arrayLength - 1])}
+                        {addLiElement('...', 'elipsic')}
+                        {addLiElement(totalArray[arrayLength - 1], arrayLength - 1)}
                     </>
                 );
             }
@@ -69,8 +73,8 @@ export default function Pagination(props) {
                     arrCheckCurrent.length);
                 return (
                     <>
-                        {addLiElement(totalArray[0])}
-                        {addLiElement('...')}
+                        {addLiElement(totalArray[0], 0)}
+                        {addLiElement('...', 'elipsic')}
                         {arrayLi}
                     </>
                 );
@@ -78,26 +82,41 @@ export default function Pagination(props) {
             arrayLi = arrCheckCurrent.slice(current - max / 2 + 2, current + max / 2 - 2);
             return (
                 <>
-                    {addLiElement(totalArray[0])}
-                    {addLiElement('...')}
+                    {addLiElement(totalArray[0], 0)}
+                    {addLiElement('...', 'elipsic1')}
                     { arrayLi }
-                    {addLiElement('...')}
-                    {addLiElement(totalArray[arrayLength - 1])}
+                    {addLiElement('...', 'elipsic2')}
+                    {addLiElement(totalArray[arrayLength - 1], arrayLength - 1)}
                 </>
             );
         }
         arrayLi = Arr;
         return arrayLi;
     }
-    if ((current > total) || (current < 1)) return null;
+    if (current > total) {
+        console.error('Error: cannot set current > total');
+        return (
+            <HandleError>
+                {'Error: cannot set current >  total !'}
+            </HandleError>
+        );
+    }
+    if (current < 1) {
+        console.error('Error: cannot set current < 1');
+        return (
+            <HandleError>
+                {'Error: cannot set current < 1 !'}
+            </HandleError>
+        );
+    }
     return (
         <div>
             <Myul
                 onChange={onChange}
             >
-                {addLiElement(<>&lt;</>)}
+                {addLiElement(<>&lt;</>, 'lessThan')}
                 {cutArray(arrCheckCurrent)}
-                {addLiElement(<>&gt;</>)}
+                {addLiElement(<>&gt;</>, 'greaterThan')}
             </Myul>
         </div>
     );
@@ -107,6 +126,18 @@ Pagination.defaultProps = {
     max: 7,
     current: 1,
     pageSize: 10,
-    onChange: null,
     variant: 'default',
+};
+Pagination.propsType = {
+    // Type Number:
+    current: PropsType.number,
+    pageSize: PropsType.number,
+    total: PropsType.number,
+    max: PropsType.number,
+    // Type String:
+    vaiant: PropsType.string,
+    // Custom pagination -- pass anything to render your pagination
+    component: PropsType.node,
+    // function onChange call wwhen current page changed
+    onChange: PropsType.func,
 };

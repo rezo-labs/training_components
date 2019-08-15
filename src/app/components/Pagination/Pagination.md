@@ -44,3 +44,18 @@
     current = {20}
 />
 ```
+## 5. Handle error event
+### 5.1 When current < 1:
+```jsx
+<Pagination
+    total = {60}
+    current = {0}
+/>
+```
+### 5.2 When current > total:
+```jsx
+<Pagination
+    total = {60}
+    current = {61}
+/>
+```
