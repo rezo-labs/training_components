@@ -46,8 +46,32 @@ const Mynav = styled.nav`
     height:100px;
 `
 
+const MyExpand=styled.a`
+display:inline-block;
+:after{
+    content:" / ";
+}
+:nth-child(n+2){
+    display:none;
+}
+:nth-child(n+1):after{
+    content:" / ... /";
+}
+:nth-last-child(-n+1){
+    display:inline-block;
+}
+:last-child:after{
+    content:" ";
+}
+
+`
+
+
 
 export default function Breadcrumbs(props) { 
+    const {
+        isExpand
+    } = props;
     let arrayItems = props.routes.map((e,eindex) => {
             return props.activeItem == eindex ?
                 <Mya href = {e.href} state ='active'>{e.name}</Mya>
@@ -55,6 +79,12 @@ export default function Breadcrumbs(props) {
                 <Mya href = {e.href} state ='inactive' >{e.name}</Mya>
                 
     })
+    if(!isExpand){
+            return <MyExpand>
+                    {arrayItems};
+            </MyExpand>
+    }
+
     
     return(
     <div>

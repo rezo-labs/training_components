@@ -10,7 +10,9 @@ A component to be used for navigation.
 
 ```jsx
 <Breadcrumbs
-	routes = {[
+   
+   activeItem={2}
+    routes = {[
   	{
     	href: "/introduction",
       name: "introduction"
@@ -24,7 +26,7 @@ A component to be used for navigation.
       name: "general"
   	}
   ] }
-  activeItem={2}
+  
 />
 ```
 
