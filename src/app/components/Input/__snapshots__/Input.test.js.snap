@@ -2,15 +2,15 @@
 
 exports[`Input snapshot testing 1`] = `
 <div
-  className="style_Input__Mydiv-sc-16lh3s8-2 fBLmbS"
+  className="style_Input__WrapInput-sc-16lh3s8-2 jKGLVh"
 >
   <label
-    className="style_Input__Mylabel-sc-16lh3s8-1 hOqvwM"
+    className="style_Input__LabelInput-sc-16lh3s8-1 izIjG"
   >
     snapshot's using label
   </label>
   <input
-    className="style_Input__Myinput-sc-16lh3s8-0 cPhQye"
+    className="style_Input__InputText-sc-16lh3s8-0 hRyNaK"
     id={null}
     onBlur={null}
     onChange={null}
@@ -20,14 +20,14 @@ exports[`Input snapshot testing 1`] = `
     type="text"
   />
   <div
-    className="style_Input__Helptext-sc-16lh3s8-4 cOpEap"
+    className="style_Input__HelpText-sc-16lh3s8-4 fUbfoA"
   >
     <img
-      className="style_Input__Myimg-sc-16lh3s8-3 hgYzBU"
+      className="style_Input__IconHelpText-sc-16lh3s8-3 dkQZNQ"
       src="test-file-stub"
     />
     <span
-      className="style_Input__Divtext-sc-16lh3s8-5 htwQLH"
+      className="style_Input__Text-sc-16lh3s8-5 gcpjhI"
     >
       helpText Snapshot testing
     </span>
