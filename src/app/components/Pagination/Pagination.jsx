@@ -1,43 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import PropsType from 'prop-types';
+import { Myul, HandleError, ButtonItems } from './style_Pagination';
 
-const theme = {
-    default: ['white', 'black'],
-};
-const Myul = styled.ul`
-    list-style-type:none;
-    display:flex;
-`;
-const HandleError = styled.h1`
-    color: red;
-`;
-const Li = styled.li`
-    padding: 8px;
-    white-space: nowrap;
-    margin: 0;
-    font-weight: bold;
-    font-size: 18px;
-    background: ${props => (props.active ? '#007bff' : theme[props.variant][0])};
-    color: ${props => (props.active ? 'white' : theme[props.variant][1])};
-    border-radius: 5px;
-    :hover{
-        background: ${props => (props.active ? '#0056b3' : '#e6e6e6')};
-    }
-    height:fit-content;
-`;
+
 export default function Pagination(props) {
     const {
-        current, pageSize, total, variant, onChange, max, component,
+        pageSize, current, total, variant, max, component,
     } = props;
-    let page = 1;
+    const [changeCurrent, setChangeCurrent] = useState(current);
     const totalArray = [];
-    const arrayLength = total / pageSize;
-    let arrayLi = [];
+    const arrayLength = Math.floor((total - 1) / pageSize) + 1;
+    let arrayButtonItems = [];
     if (component) {
         for (let i = 0; i < arrayLength; i += 1) {
-            totalArray[i] = component(page);
-            page += 1;
+            totalArray[i] = component(i + 1);
         }
     }
     else {
@@ -45,53 +21,114 @@ export default function Pagination(props) {
             totalArray[i] = i + 1;
         }
     }
-    function addLiElement(e, eKeyValue, checkActive) {
-        if (checkActive === true) {
-            return <Li variant={variant} active key={eKeyValue}>{e}</Li>;
+    const handlekeydown = (e) => {
+        if ((e.keyCode === 65) || (e.keyCode === 37)) {
+            setChangeCurrent(changeCurrent - 1);
+            if (changeCurrent <= 1) {
+                setChangeCurrent(1);
+            }
         }
-        return <Li variant={variant} key={eKeyValue}>{e}</Li>;
+        if ((e.keyCode === 68) || (e.keyCode === 39)) {
+            setChangeCurrent(changeCurrent + 1);
+            if (changeCurrent >= totalArray.length) {
+                setChangeCurrent(totalArray.length);
+            }
+        }
+        return null;
+    };
+    function addButtonItemsElement(e, eKeyValue, checkActive) {
+        if (checkActive === true) {
+            return (
+                <ButtonItems
+                    variant={variant}
+                    active
+                    key={eKeyValue}
+                >
+                    {e}
+                </ButtonItems>
+            );
+        }
+        if (eKeyValue === 'lessThan') {
+            if (changeCurrent <= 1) {
+                return <ButtonItems variant={variant} isDisabled>{e}</ButtonItems>;
+            }
+            return (
+                <ButtonItems
+                    variant={variant}
+                    key={eKeyValue}
+                    onClick={() => setChangeCurrent(changeCurrent - 1)}
+                >
+                    {e}
+                </ButtonItems>
+            );
+        }
+        if (eKeyValue === 'greaterThan') {
+            if (changeCurrent > totalArray.length - 1) {
+                return <ButtonItems variant={variant} isDisabled>{e}</ButtonItems>;
+            }
+            return (
+                <ButtonItems
+                    variant={variant}
+                    key={eKeyValue}
+                    onClick={() => setChangeCurrent(changeCurrent + 1)}
+                >
+                    {e}
+                </ButtonItems>
+            );
+        }
+        if (e === '...') return <ButtonItems variant={variant} key={eKeyValue}>{e}</ButtonItems>;
+        return (
+            <ButtonItems
+                variant={variant}
+                key={eKeyValue}
+                onClick={() => setChangeCurrent(eKeyValue + 1)}
+            >
+                {e}
+            </ButtonItems>
+        );
     }
     const arrCheckCurrent = totalArray.map((_e, eindex) => (
-        current - 1 === eindex
-            ? addLiElement(totalArray[eindex], eindex, true)
-            : addLiElement(totalArray[eindex], eindex)
+        changeCurrent - 1 === eindex
+            ? addButtonItemsElement(totalArray[eindex], eindex, true)
+            : addButtonItemsElement(totalArray[eindex], eindex)
     ));
     function cutArray(...Arr) {
         if (arrayLength > max) {
-            if ((current < max / 2)) {
-                arrayLi = arrCheckCurrent.slice(0, max - 2);
+            if ((changeCurrent < max / 2)) {
+                arrayButtonItems = arrCheckCurrent.slice(0, max - 2);
                 return (
                     <>
-                        { arrayLi }
-                        {addLiElement('...', 'elipsic')}
-                        {addLiElement(totalArray[arrayLength - 1], arrayLength - 1)}
+                        { arrayButtonItems }
+                        {addButtonItemsElement('...', 'elipsic')}
+                        {addButtonItemsElement(totalArray[arrayLength - 1], arrayLength - 1)}
                     </>
                 );
             }
-            if ((current > (arrCheckCurrent.length - max / 2))) {
-                arrayLi = arrCheckCurrent.slice(arrCheckCurrent.length - max + 2,
+            if ((changeCurrent > (arrCheckCurrent.length - max / 2))) {
+                arrayButtonItems = arrCheckCurrent.slice(arrCheckCurrent.length - max + 2,
                     arrCheckCurrent.length);
                 return (
                     <>
-                        {addLiElement(totalArray[0], 0)}
-                        {addLiElement('...', 'elipsic')}
-                        {arrayLi}
+                        {addButtonItemsElement(totalArray[0], 0)}
+                        {addButtonItemsElement('...', 'elipsic')}
+                        {arrayButtonItems}
                     </>
                 );
             }
-            arrayLi = arrCheckCurrent.slice(current - max / 2 + 2, current + max / 2 - 2);
+            arrayButtonItems = arrCheckCurrent.slice(changeCurrent - max / 2 + 2,
+                changeCurrent + max / 2 - 2);
             return (
                 <>
-                    {addLiElement(totalArray[0], 0)}
-                    {addLiElement('...', 'elipsic1')}
-                    { arrayLi }
-                    {addLiElement('...', 'elipsic2')}
-                    {addLiElement(totalArray[arrayLength - 1], arrayLength - 1)}
+                    {addButtonItemsElement(totalArray[0], 0)}
+                    {addButtonItemsElement('...', 'elipsic')}
+                    { arrayButtonItems }
+                    {addButtonItemsElement('...', 'elipsic1')}
+                    {addButtonItemsElement(totalArray[arrayLength - 1], arrayLength - 1)}
                 </>
             );
         }
-        arrayLi = Arr;
-        return arrayLi;
+        arrayButtonItems = Arr;
+        return arrayButtonItems;
     }
     if (current > total) {
         console.error('Error: cannot set current > total');
@@ -112,11 +149,11 @@ export default function Pagination(props) {
     return (
         <div>
             <Myul
-                onChange={onChange}
+                onKeyDown={handlekeydown}
             >
-                {addLiElement(<>&lt;</>, 'lessThan')}
+                {addButtonItemsElement(<>&lt;</>, 'lessThan')}
                 {cutArray(arrCheckCurrent)}
-                {addLiElement(<>&gt;</>, 'greaterThan')}
+                {addButtonItemsElement(<>&gt;</>, 'greaterThan')}
             </Myul>
         </div>
     );
