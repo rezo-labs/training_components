@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Myavatar, Mydiv, AvataNoUrl, DivStatus, DivText,
+    AvatarItem, WrapAvatar, AvataNoUrl, AvatarStatus, TextAvatar,
 } from './style_Avatar';
 
 function formatText(str) {
@@ -24,14 +24,14 @@ export default function Avatar(props) {
     if (name) {
         const sliceText = formatText(name);
         return (
-            <Mydiv
+            <WrapAvatar
                 size={size}
                 clickable={clickable}
                 onClick={onClick}
             >
                 {imageUrl
                     ? (
-                        <Myavatar
+                        <AvatarItem
                             name={name}
                             src={imageUrl}
                             size={size}
@@ -43,16 +43,16 @@ export default function Avatar(props) {
                             status={status}
                             size={size}
                         >
-                            <DivText size={size}>
+                            <TextAvatar size={size}>
                                 {sliceText}
-                            </DivText>
+                            </TextAvatar>
                         </AvataNoUrl>
                     )}
-                <DivStatus
+                <AvatarStatus
                     size={size}
                     status={status}
                 />
-            </Mydiv>
+            </WrapAvatar>
         );
     }
 }

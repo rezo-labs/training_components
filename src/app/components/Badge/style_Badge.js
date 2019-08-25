@@ -10,19 +10,19 @@ const theme = {
     success: ['#28a745', '#28a745'],
     '': ['black', 'black'],
 };
-const Mysize = {
+const Size = {
     small: '15px',
     medium: '25px',
     large: '35px',
 };
-const Mytype = {
+const Type = {
     tag: 'uppercase',
 };
-export const Mybadge = styled.span`
+export const BadgeItem = styled.span`
     display:inline-block;
     background: ${props => (props.isInverted || props.variant === 'default' ? 'white' : theme[props.variant][0])};
     color: ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][0] : 'white')};
-    font-size: ${props => (Mysize[props.size])};
+    font-size: ${props => (Size[props.size])};
     padding: 10px;
     border: 2px solid ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][1] : '')};
     border-radius:6px;
@@ -32,7 +32,7 @@ export const Mybadge = styled.span`
     font-weight:650;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-transform: ${props => (Mytype[props.type])};
+    text-transform: ${props => (Type[props.type])};
     pointer-events: ${props => (props.clickable ? '' : 'none')};
     cursor: ${props => (props.clickable ? 'pointer' : '')};
     font-family:Sans-serif;

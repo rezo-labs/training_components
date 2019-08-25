@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Mysize = {
+const Size = {
     xsmall: ['50px', '1.5em', '33%', '72%', '2.5px'],
     small: ['100px', '3em', '26%', '72%', '3px'],
     medium: ['150px', '4.5em', '22%', '72%', '3.5px'],
@@ -13,7 +13,7 @@ const theme = {
     offline: '#ccccb3',
 };
 
-export const Myavatar = styled.img`
+export const AvatarItem = styled.img`
     width :100%;
     height:100%;
     border-radius:50%;
@@ -23,24 +23,24 @@ export const Myavatar = styled.img`
     position: relative;
     left:0;  
 `;
-export const Mydiv = styled.div`
+export const WrapAvatar = styled.div`
     margin-bottom:20px;
-    width: ${props => (Mysize[props.size][0])};
-    height: ${props => (Mysize[props.size][0])};
+    width: ${props => (Size[props.size][0])};
+    height: ${props => (Size[props.size][0])};
     /* pointer-events: ${props => (props.clickable === true ? '' : 'none')}; */
     cursor: ${props => (props.clickable === true ? 'pointer' : '')};
     display:inline-block;
     margin-right:20px;
 `;
-export const DivStatus = styled.div`
+export const AvatarStatus = styled.div`
     position: relative;
-    bottom: ${props => (Mysize[props.size][2])};
-    left:${props => (Mysize[props.size][3])};
+    bottom: ${props => (Size[props.size][2])};
+    left:${props => (Size[props.size][3])};
     background: ${props => (theme[props.status])};
     width: 18%;
     height: 18%;
     border-radius: 50%;
-    border: ${props => (Mysize[props.size][4])} solid white;
+    border: ${props => (Size[props.size][4])} solid white;
 `;
 
 export const AvataNoUrl = styled.div`
@@ -53,8 +53,8 @@ export const AvataNoUrl = styled.div`
     background: #50a366;
 `;
 
-export const DivText = styled.div`
-    font-size: ${props => (Mysize[props.size][1])};
+export const TextAvatar = styled.div`
+    font-size: ${props => (Size[props.size][1])};
     text-transform: uppercase;
     position:relative;
     top:50%;

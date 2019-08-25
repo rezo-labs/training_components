@@ -12,7 +12,7 @@ const themeStatus = {
     success: ['#00802b', '#000000', 'white'],
     warning: ['#ffc107', '#000000', 'white'],
 };
-export const Myinput = styled.input`
+export const InputText = styled.input`
     margin: 5px 0;
     padding: 15px;
     font-size:23px;
@@ -40,28 +40,28 @@ export const Myinput = styled.input`
     };
 `;
 
-export const Mylabel = styled.label`
+export const LabelInput = styled.label`
      display:block;
      color: #808080;
      font-size:18px;
 `;
-export const Mydiv = styled.div`
+export const WrapInput = styled.div`
     width:fit-content;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom:10px;
     font-weight:500;
 `;
-export const Myimg = styled.img`
+export const IconHelpText = styled.img`
     margin-right:5px;
     object-fit:cover;
     width:20px;
     height:20px;
 `;
-export const Helptext = styled.div`
+export const HelpText = styled.div`
     color: ${props => (props.status ? themeStatus[props.status][0] : theme.default[1])};  
     display:flex;
     line-height:20px;
 `;
-export const Divtext = styled.span`
+export const Text = styled.span`
     font-size: 15px;
 `;

@@ -4,7 +4,7 @@ import warringSVG from './assets/warning.svg';
 import successSVG from './assets/success.svg';
 import errorSVG from './assets/error.svg';
 import {
-    Mydiv, Mylabel, Myimg, Myinput, Divtext, Helptext,
+    WrapInput, LabelInput, IconHelpText, InputText, Text, HelpText,
 } from './style_Input';
 
 export default function Input(props) {
@@ -15,28 +15,28 @@ export default function Input(props) {
     } = props;
     function checkStatus(statusInput) {
         if (statusInput === 'warning') {
-            return (<Myimg src={warringSVG} />);
+            return (<IconHelpText src={warringSVG} />);
         }
         if (statusInput === 'success') {
-            return (<Myimg src={successSVG} />);
+            return (<IconHelpText src={successSVG} />);
         }
         if (statusInput === 'error') {
-            return (<Myimg src={errorSVG} />);
+            return (<IconHelpText src={errorSVG} />);
         }
         return null;
     }
     if (type === 'password' || type === 'text' || type === 'number') {
         return (
-            <Mydiv>
+            <WrapInput>
                 {label
                     ? (
-                        <Mylabel>
+                        <LabelInput>
                             {label}
-                        </Mylabel>
+                        </LabelInput>
                     ) : null }
                 {isDisable
                     ? (
-                        <Myinput
+                        <InputText
                             type={type}
                             disabled
                             id={id}
@@ -50,7 +50,7 @@ export default function Input(props) {
                         />
                     )
                     : (
-                        <Myinput
+                        <InputText
                             status={status}
                             type={type}
                             variant={variant}
@@ -66,17 +66,17 @@ export default function Input(props) {
                     )
                 }
                 {helpText ? (
-                    <Helptext
+                    <HelpText
                         status={status}
                     >
                         {checkStatus(status)}
-                        <Divtext>
+                        <Text>
                             {helpText}
-                        </Divtext>
-                    </Helptext>
+                        </Text>
+                    </HelpText>
                 ) : null
                 }
-            </Mydiv>
+            </WrapInput>
         );
     }
     return null;

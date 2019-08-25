@@ -4,14 +4,17 @@ const theme = {
     default: ['white', 'black'],
     disabled: '#999999',
 };
-export const Myul = styled.ul`
+export const ListButtonsItem = styled.div`
     list-style-type:none;
     display: flex;
+    :focus{
+        outline:none;
+    }
 `;
 export const HandleError = styled.h1`
     color: red;
 `;
-export const ButtonItems = styled.button`
+export const ButtonItem = styled.button`
     padding: 15px;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
@@ -19,6 +22,7 @@ export const ButtonItems = styled.button`
     margin-right: 4px;
     font-weight: 400;
     font-size: 1.25rem;
+    cursor:pointer;
     background: ${props => (props.active ? '#007bff' : theme[props.variant][0])};
     color: ${props => (props.active ? 'white' : props.isDisabled ? theme.disabled : theme[props.variant][1])};
     border-radius: 3px;
@@ -29,5 +33,8 @@ export const ButtonItems = styled.button`
     :before{
         content:'';
         padding-bottom:100%;
+    }
+    :focus{
+        outline:none;
     }
 `;

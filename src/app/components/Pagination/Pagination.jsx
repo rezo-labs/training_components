@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropsType from 'prop-types';
-import { Myul, HandleError, ButtonItems } from './style_Pagination';
-
+import { ListButtonsItem, HandleError, ButtonItem } from './style_Pagination';
 
 export default function Pagination(props) {
     const {
@@ -22,6 +21,10 @@ export default function Pagination(props) {
             totalArray[i] = i + 1;
         }
     }
+    /* Handle focus onClick Button */
+    const handleFocusOnclick = (e) => {
+        e.target.parentNode.focus();
+    };
     /* handle onkeydowwn event */
     const handlekeydown = (e) => {
         if ((e.keyCode === 65) || (e.keyCode === 37)) {
@@ -42,52 +45,80 @@ export default function Pagination(props) {
     function addButtonItemsElement(e, eKeyValue, checkActive) {
         if (checkActive === true) {
             return (
-                <ButtonItems
+                <ButtonItem
                     variant={variant}
                     active
                     key={eKeyValue}
+                    onClick={handleFocusOnclick}
                 >
                     {e}
-                </ButtonItems>
+                </ButtonItem>
             );
         }
         if (eKeyValue === 'lessThan') {
             if (changeCurrent <= 1) {
-                return <ButtonItems variant={variant} isDisabled>{e}</ButtonItems>;
+                return (
+                    <ButtonItem
+                        variant={variant}
+                        isDisabled
+                        onClick={handleFocusOnclick}
+                    >
+                        {e}
+                    </ButtonItem>
+                );
             }
             return (
-                <ButtonItems
+                <ButtonItem
                     variant={variant}
                     key={eKeyValue}
-                    onClick={() => setChangeCurrent(changeCurrent - 1)}
+                    onClick={(event) => {
+                        setChangeCurrent(changeCurrent - 1);
+                        event.target.parentNode.focus();
+                    }}
+                    tabIndex={0}
                 >
                     {e}
-                </ButtonItems>
+                </ButtonItem>
             );
         }
         if (eKeyValue === 'greaterThan') {
             if (changeCurrent > totalArray.length - 1) {
-                return <ButtonItems variant={variant} isDisabled>{e}</ButtonItems>;
+                return (
+                    <ButtonItem
+                        variant={variant}
+                        isDisabled
+                        onClick={handleFocusOnclick}
+                    >
+                        {e}
+                    </ButtonItem>
+                );
             }
             return (
-                <ButtonItems
+                <ButtonItem
                     variant={variant}
                     key={eKeyValue}
-                    onClick={() => setChangeCurrent(changeCurrent + 1)}
+                    onClick={(event) => {
+                        setChangeCurrent(changeCurrent + 1);
+                        event.target.parentNode.focus();
+                    }}
+                    tabIndex={0}
                 >
                     {e}
-                </ButtonItems>
+                </ButtonItem>
             );
         }
-        if (e === '...') return <ButtonItems variant={variant} key={eKeyValue}>{e}</ButtonItems>;
+        if (e === '...') return <ButtonItem variant={variant} key={eKeyValue} onClick={handleFocusOnclick}>{e}</ButtonItem>;
         return (
-            <ButtonItems
+            <ButtonItem
                 variant={variant}
                 key={eKeyValue}
-                onClick={() => setChangeCurrent(eKeyValue + 1)}
+                onClick={(event) => {
+                    setChangeCurrent(eKeyValue + 1);
+                    event.target.parentNode.focus();
+                }}
             >
                 {e}
-            </ButtonItems>
+            </ButtonItem>
         );
     }
     /* check status current in pagination */
@@ -155,13 +186,16 @@ export default function Pagination(props) {
     /* Render Pagination */
     return (
         <div>
-            <Myul
+            <ListButtonsItem
                 onKeyDown={handlekeydown}
+                tabIndex={0}
+                className="focus"
+                id="focus"
             >
                 {addButtonItemsElement(<>&lt;</>, 'lessThan')}
                 {cutArray(arrCheckCurrent)}
                 {addButtonItemsElement(<>&gt;</>, 'greaterThan')}
-            </Myul>
+            </ListButtonsItem>
         </div>
     );
 }
@@ -172,6 +206,7 @@ Pagination.defaultProps = {
     pageSize: 10,
     variant: 'default',
 };
+
 Pagination.propsType = {
     // Type Number:
     current: PropsType.number,

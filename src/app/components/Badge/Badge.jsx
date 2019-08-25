@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Mybadge } from './style_Badge';
+import { BadgeItem } from './style_Badge';
 
 export default function Badge(props) {
     function formatNumber(num) {
@@ -15,7 +15,7 @@ export default function Badge(props) {
     if (type === 'numeric') {
         const num = formatNumber(parseInt(props.children, 10));
         return (
-            <Mybadge
+            <BadgeItem
                 clickable={clickable}
                 variant={variant}
                 type={type}
@@ -25,11 +25,11 @@ export default function Badge(props) {
                 onClick={onClick}
             >
                 {num}
-            </Mybadge>
+            </BadgeItem>
         );
     }
     return (
-        <Mybadge
+        <BadgeItem
             clickable={clickable}
             variant={variant}
             type={type}
@@ -39,7 +39,7 @@ export default function Badge(props) {
             onClick={onClick}
         >
             {children}
-        </Mybadge>
+        </BadgeItem>
     );
 }
 
