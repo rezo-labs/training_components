@@ -11,6 +11,7 @@ export default function Pagination(props) {
     const totalArray = [];
     const arrayLength = Math.floor((total - 1) / pageSize) + 1;
     let arrayButtonItems = [];
+    /* add items to array */
     if (component) {
         for (let i = 0; i < arrayLength; i += 1) {
             totalArray[i] = component(i + 1);
@@ -21,6 +22,7 @@ export default function Pagination(props) {
             totalArray[i] = i + 1;
         }
     }
+    /* handle onkeydowwn event */
     const handlekeydown = (e) => {
         if ((e.keyCode === 65) || (e.keyCode === 37)) {
             setChangeCurrent(changeCurrent - 1);
@@ -36,6 +38,7 @@ export default function Pagination(props) {
         }
         return null;
     };
+    /* Add button element to array */
     function addButtonItemsElement(e, eKeyValue, checkActive) {
         if (checkActive === true) {
             return (
@@ -87,11 +90,13 @@ export default function Pagination(props) {
             </ButtonItems>
         );
     }
+    /* check status current in pagination */
     const arrCheckCurrent = totalArray.map((_e, eindex) => (
         changeCurrent - 1 === eindex
             ? addButtonItemsElement(totalArray[eindex], eindex, true)
             : addButtonItemsElement(totalArray[eindex], eindex)
     ));
+    /* Handle Truncate pagination */
     function cutArray(...Arr) {
         if (arrayLength > max) {
             if ((changeCurrent < max / 2)) {
@@ -130,6 +135,7 @@ export default function Pagination(props) {
         arrayButtonItems = Arr;
         return arrayButtonItems;
     }
+    /* Handle error input */
     if (current > total) {
         console.error('Error: cannot set current > total');
         return (
@@ -146,6 +152,7 @@ export default function Pagination(props) {
             </HandleError>
         );
     }
+    /* Render Pagination */
     return (
         <div>
             <Myul
