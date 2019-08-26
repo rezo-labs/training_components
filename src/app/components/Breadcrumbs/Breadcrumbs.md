@@ -62,7 +62,7 @@ isExpand
 #### Custom separator
 ```jsx
 <Breadcrumbs
-isExpand
+    isExpand
   separator='*'
   routes = {[
   	{

@@ -23,7 +23,7 @@ margin: 0 0 0 10px;
 };
 
 :before{
-    content:${props =>props.separator};
+    `content`:${props.separator};
     position:relative;
     margin-right:10px;
     color:#cbcbcb;
@@ -61,27 +61,19 @@ export default function Breadcrumbs(props) {
                 
             })
 
-            console.log('test',routes[routes.length - 1]);
+            console.log('test1',routes.href);
+            console.log('test2',separator);
     
-        
-        if(isExpand){
+            if(isExpand){
             return( 
             <div> 
-            <Mya href ={routes[0].href} state ='inactive'>{routes[0].name}</Mya>
+            <Mya href ={routes[0].href} state ='inactive' separator={separator}>{routes[0].name}</Mya>
             <Mya state ='inactive'>...</Mya>
-            <Mya href={routes[routes.length-1].href} state='active'>{routes[routes.length-1].name}</Mya>
+            <Mya href={routes[routes.length-1].href} state='active' separator={separator}>{routes[routes.length-1].name}</Mya>
             </div>
             )}
-
-            if(separator){
-                return(
-                    <div>
-                        <Mya href={routes.href} separator={separator} state='active'> {routes.name}</Mya>
-                    </div>
-                )
-            }
-    
-    
+        
+           
     return(
     <div>
         <Mynav>
