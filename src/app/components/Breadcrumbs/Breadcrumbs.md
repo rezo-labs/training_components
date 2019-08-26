@@ -11,7 +11,7 @@ A component to be used for navigation.
 ```jsx
 <Breadcrumbs
    
-   activeItem={2}
+   
     routes = {[
   	{
     	href: "/introduction",
@@ -33,7 +33,37 @@ A component to be used for navigation.
 ```jsx
 <Breadcrumbs
 isExpand
-  activeItem={4}
+  
+  routes = {[
+  	{
+    	href: "/home",
+      name: "EPL"
+  	},
+  	{
+    	href: "/home/introduction",
+      name: "2019-2020"
+  	},
+  	{
+    	href: "/home/introduction/member",
+      name: "Manchester United"
+  	},
+    {
+        href: "/home/introduction/member/duy",
+        name: "Pogba"
+  	},
+  	{
+    		href: "/home/introduction/member/duy",
+        name: "Stats"
+  	}
+  ]}
+/>
+```
+
+#### Custom separator
+```jsx
+<Breadcrumbs
+isExpand
+  separator='*'
   routes = {[
   	{
     	href: "/home",

@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const theme ={
     inactive:['#cbcbcb','white'],
     active:['#4c4c4c','white'],
+    default:['#cbcbcb']
 }
 const Mya = styled.a`
 display:inline-block;
-color:${props => (theme[props.state][0])};
+color:${props=>props.state ?  (theme[props.state][0]):(theme.inactive[0])};
 text-decoration:none;
 position:relative;
 text-transform: capitalize;
@@ -22,7 +23,7 @@ margin: 0 0 0 10px;
 };
 
 :before{
-    content:"/";
+    content:${props =>props.separator};
     position:relative;
     margin-right:10px;
     color:#cbcbcb;
@@ -49,25 +50,36 @@ const Mynav = styled.nav`
 
 
 
-
 export default function Breadcrumbs(props) { 
-    const{isExpand,routes,href}=props;
-    let arrayItems = props.routes.map((e,eindex) => {
-            return props.activeItem == eindex ?
-                <Mya href = {e.href} state ='active'>{e.name}</Mya>
+    const{isExpand,routes,href,separator}=props;
+   
+    let arrayItems = routes.map((e,eindex) => {
+            return  eindex==routes.length-1  ?
+                <Mya href = {e.href} state ='active' >{e.name}</Mya>
                 :
                 <Mya href = {e.href} state ='inactive' >{e.name}</Mya>
-    })
+                
+            })
+
+            console.log('test',routes[routes.length - 1]);
     
+        
         if(isExpand){
             return( 
-            <div>
-            <Mya href ={routes[0].href} state ='active'>{routes[0].name}</Mya>
+            <div> 
+            <Mya href ={routes[0].href} state ='inactive'>{routes[0].name}</Mya>
             <Mya state ='inactive'>...</Mya>
-            <Mya href={routes[routes.length-1].href} state ='inactive'>{routes[routes.length-1].name}</Mya>
+            <Mya href={routes[routes.length-1].href} state='active'>{routes[routes.length-1].name}</Mya>
             </div>
             )}
 
+            if(separator){
+                return(
+                    <div>
+                        <Mya href={routes.href} separator={separator} state='active'> {routes.name}</Mya>
+                    </div>
+                )
+            }
     
     
     return(
@@ -75,11 +87,6 @@ export default function Breadcrumbs(props) {
         <Mynav>
             {arrayItems}
         </Mynav>
-    
-        <Mynav>
-            {arrayItems}
-        </Mynav>
-    
     </div>
 
 
