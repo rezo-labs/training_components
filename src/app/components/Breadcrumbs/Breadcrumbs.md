@@ -33,7 +33,7 @@ A component to be used for navigation.
 ```jsx
 <Breadcrumbs
 isExpand
-  
+  separator='/'
   routes = {[
   	{
     	href: "/home",

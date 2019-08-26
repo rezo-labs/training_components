@@ -23,7 +23,7 @@ margin: 0 0 0 10px;
 };
 
 :before{
-    `content`:${props.separator};
+    content:'${props=>props.separator}';
     position:relative;
     margin-right:10px;
     color:#cbcbcb;
@@ -68,10 +68,11 @@ export default function Breadcrumbs(props) {
             return( 
             <div> 
             <Mya href ={routes[0].href} state ='inactive' separator={separator}>{routes[0].name}</Mya>
-            <Mya state ='inactive'>...</Mya>
+            <Mya state ='inactive' separator={separator}>...</Mya>
             <Mya href={routes[routes.length-1].href} state='active' separator={separator}>{routes[routes.length-1].name}</Mya>
             </div>
             )}
+            
         
            
     return(
