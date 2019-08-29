@@ -4,12 +4,22 @@ import { ListButtonsItem, HandleError, ButtonItem } from './style_Pagination';
 
 export default function Pagination(props) {
     const {
-        pageSize, current, total, variant, max, component,
+        pageSize, current, total, variant, max, component, onChange,
     } = props;
     const [changeCurrent, setChangeCurrent] = useState(current);
     const totalArray = [];
     const arrayLength = Math.floor((total - 1) / pageSize) + 1;
     let arrayButtonItems = [];
+    /* handle onclick items: */
+    const handleFocusOnclick = (e) => {
+        e.target.parentNode.focus();
+        const content = e.target.textContent;
+        if (onChange) {
+            if ((content === '>') || (content === '<')) return null;
+            onChange(e.target.textContent, pageSize);
+        }
+        return null;
+    };
     /* add items to array */
     if (component) {
         for (let i = 0; i < arrayLength; i += 1) {
@@ -21,10 +31,6 @@ export default function Pagination(props) {
             totalArray[i] = i + 1;
         }
     }
-    /* Handle focus onClick Button */
-    const handleFocusOnclick = (e) => {
-        e.target.parentNode.focus();
-    };
     /* handle onkeydowwn event */
     const handlekeydown = (e) => {
         if ((e.keyCode === 65) || (e.keyCode === 37)) {
@@ -115,6 +121,9 @@ export default function Pagination(props) {
                 onClick={(event) => {
                     setChangeCurrent(eKeyValue + 1);
                     event.target.parentNode.focus();
+                    if (onChange) {
+                        onChange(event.target.textContent, pageSize);
+                    }
                 }}
             >
                 {e}

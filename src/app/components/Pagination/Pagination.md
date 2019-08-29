@@ -1,7 +1,7 @@
 # My Pagination
 ## 1. Basic pagination:
 ```jsx
-<Pagination total={60}/>
+<Pagination total={60} />
 ```
 ## 2. Custom pagination:
 ```jsx
@@ -58,4 +58,8 @@
     total = {60}
     current = {61}
 />
+```
+## 6. handle onChange event ( from user ):
+```jsx
+<Pagination total={60} onChange={(page)=> {console.log(page)}}/>
 ```
