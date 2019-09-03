@@ -16,7 +16,7 @@ export default function Pagination(props) {
         const content = e.target.textContent;
         if (onChange) {
             if ((content === '>') || (content === '<')) return null;
-            onChange(e.target.textContent, pageSize);
+            onChange(changeCurrent, pageSize);
         }
         return null;
     };
@@ -78,6 +78,7 @@ export default function Pagination(props) {
                     variant={variant}
                     key={eKeyValue}
                     onClick={(event) => {
+                        onChange(changeCurrent - 1, pageSize);
                         setChangeCurrent(changeCurrent - 1);
                         event.target.parentNode.focus();
                     }}
@@ -104,6 +105,7 @@ export default function Pagination(props) {
                     variant={variant}
                     key={eKeyValue}
                     onClick={(event) => {
+                        onChange(changeCurrent + 1, pageSize);
                         setChangeCurrent(changeCurrent + 1);
                         event.target.parentNode.focus();
                     }}
@@ -122,7 +124,7 @@ export default function Pagination(props) {
                     setChangeCurrent(eKeyValue + 1);
                     event.target.parentNode.focus();
                     if (onChange) {
-                        onChange(event.target.textContent, pageSize);
+                        onChange(eKeyValue + 1, pageSize);
                     }
                 }}
             >
