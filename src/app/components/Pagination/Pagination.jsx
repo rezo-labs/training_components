@@ -14,8 +14,8 @@ export default function Pagination(props) {
     const handleFocusOnclick = (e) => {
         e.target.parentNode.focus();
         const content = e.target.textContent;
+        if ((content === '>') || (content === '<')) return null;
         if (onChange) {
-            if ((content === '>') || (content === '<')) return null;
             onChange(changeCurrent, pageSize);
         }
         return null;
@@ -78,11 +78,12 @@ export default function Pagination(props) {
                     variant={variant}
                     key={eKeyValue}
                     onClick={(event) => {
-                        onChange(changeCurrent - 1, pageSize);
+                        if (onChange) {
+                            onChange(changeCurrent - 1, pageSize);
+                        }
                         setChangeCurrent(changeCurrent - 1);
                         event.target.parentNode.focus();
                     }}
-                    tabIndex={0}
                 >
                     {e}
                 </ButtonItem>
@@ -105,11 +106,12 @@ export default function Pagination(props) {
                     variant={variant}
                     key={eKeyValue}
                     onClick={(event) => {
-                        onChange(changeCurrent + 1, pageSize);
+                        if (onChange) {
+                            onChange(changeCurrent + 1, pageSize);
+                        }
                         setChangeCurrent(changeCurrent + 1);
                         event.target.parentNode.focus();
                     }}
-                    tabIndex={0}
                 >
                     {e}
                 </ButtonItem>
