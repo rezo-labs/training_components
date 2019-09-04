@@ -7,24 +7,41 @@ export default function Pagination(props) {
         pageSize, current, total, variant, max, component, onChange,
     } = props;
     const [changeCurrent, setChangeCurrent] = useState(current);
-    const totalArray = [];
     const arrayLength = Math.floor((total - 1) / pageSize) + 1;
     let arrayButtonItems = [];
+    const [isDisableValue, setIsDisableValue] = useState(false);
     /* handle onclick items: */
     const handleFocusOnclick = (e) => {
         e.target.parentNode.focus();
+        // content contains text content the items
+        console.log('changecurrent', changeCurrent);
         const content = e.target.textContent;
-        if ((content === '>') || (content === '<')) return null;
+        if (content === '>') return null;
+        if (content === '<') {
+            console.log('changeCurrentLessthan', changeCurrent);
+            e.target.parentNode.focus();
+            setChangeCurrent(changeCurrent - 1);
+            
+            if (changeCurrent <= 1) {
+                setIsDisableValue(true);
+                return null;
+            }
+            setIsDisableValue(false);
+            return null;
+        }
         if (onChange) {
             onChange(changeCurrent, pageSize);
         }
+        setIsDisableValue(false);
         return null;
     };
+    let totalArray = Array(arrayLength);
     /* add items to array */
     if (component) {
-        for (let i = 0; i < arrayLength; i += 1) {
-            totalArray[i] = component(i + 1);
-        }
+        totalArray = [...totalArray.keys()].map((e, eindex) => (component(eindex + 1)));
+        // for (let i = 0; i < arrayLength; i += 1) {
+        //     totalArray[i] = component(i + 1);
+        // }
     }
     else {
         for (let i = 0; i < arrayLength; i += 1) {
@@ -62,28 +79,30 @@ export default function Pagination(props) {
             );
         }
         if (eKeyValue === 'lessThan') {
-            if (changeCurrent <= 1) {
-                return (
-                    <ButtonItem
-                        variant={variant}
-                        isDisabled
-                        onClick={handleFocusOnclick}
-                    >
-                        {e}
-                    </ButtonItem>
-                );
-            }
+            // if (changeCurrent <= 1) {
+            //     return (
+            //         <ButtonItem
+            //             variant={variant}
+            //             isDisabled
+            //             onClick={handleFocusOnclick}
+            //         >
+            //             {e}
+            //         </ButtonItem>
+            //     );
+            // }
             return (
                 <ButtonItem
                     variant={variant}
                     key={eKeyValue}
-                    onClick={(event) => {
-                        if (onChange) {
-                            onChange(changeCurrent - 1, pageSize);
-                        }
-                        setChangeCurrent(changeCurrent - 1);
-                        event.target.parentNode.focus();
-                    }}
+                    onClick={handleFocusOnclick}
+                    isDisabled={isDisableValue}
+                    // onClick={(event) => {
+                    //     if (onChange) {
+                    //         onChange(changeCurrent - 1, pageSize);
+                    //     }
+                    //     setChangeCurrent(changeCurrent - 1);
+                    //     event.target.parentNode.focus();
+                    // }}
                 >
                     {e}
                 </ButtonItem>
@@ -109,6 +128,7 @@ export default function Pagination(props) {
                         if (onChange) {
                             onChange(changeCurrent + 1, pageSize);
                         }
+                        setIsDisableValue(false);
                         setChangeCurrent(changeCurrent + 1);
                         event.target.parentNode.focus();
                     }}
