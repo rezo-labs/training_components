@@ -9,146 +9,109 @@ export default function Pagination(props) {
     const [changeCurrent, setChangeCurrent] = useState(current);
     const arrayLength = Math.floor((total - 1) / pageSize) + 1;
     let arrayButtonItems = [];
-    const [isDisableValue, setIsDisableValue] = useState(false);
-    /* handle onclick items: */
-    const handleFocusOnclick = (e) => {
+    /* handle onclick item: */
+    // const handleFocusOnclick = (e) => {
+    function handleFocusOnclick(e, eindex) {
         e.target.parentNode.focus();
-        // content contains text content the items
-        console.log('changecurrent', changeCurrent);
-        const content = e.target.textContent;
-        if (content === '>') return null;
-        if (content === '<') {
-            console.log('changeCurrentLessthan', changeCurrent);
-            e.target.parentNode.focus();
-            setChangeCurrent(changeCurrent - 1);
-            
-            if (changeCurrent <= 1) {
-                setIsDisableValue(true);
-                return null;
-            }
-            setIsDisableValue(false);
+        const textConvertToInt = parseInt(e.target.textContent, 10); // convert text to int
+        const content = e.target.textContent; // content contains text content of the item
+        // when clicks the next item
+        if (content === '>') {
+            if (changeCurrent === arrayLength) return null; // check whether the first item or not ?
+            setChangeCurrent(changeCurrent + 1);
+            if (onChange) onChange(changeCurrent + 1, pageSize);
             return null;
         }
-        if (onChange) {
-            onChange(changeCurrent, pageSize);
+        // when click the previous item
+        if (content === '<') {
+            if (changeCurrent === 1) return null; // check whether the last item or not ?
+            setChangeCurrent(changeCurrent - 1);
+            if (onChange) onChange(changeCurrent - 1, pageSize);
+            return null;
         }
-        setIsDisableValue(false);
+        // to not return onChange event when click continously
+        if (onChange) onChange(textConvertToInt, pageSize);
+        e.target.parentNode.focus();
+        setChangeCurrent(eindex + 1);
         return null;
-    };
+    }
     let totalArray = Array(arrayLength);
     /* add items to array */
     if (component) {
-        totalArray = [...totalArray.keys()].map((e, eindex) => (component(eindex + 1)));
-        // for (let i = 0; i < arrayLength; i += 1) {
-        //     totalArray[i] = component(i + 1);
-        // }
+        totalArray = [...totalArray.keys()].map((_e, eindex) => (component(eindex + 1)));
     }
     else {
-        for (let i = 0; i < arrayLength; i += 1) {
-            totalArray[i] = i + 1;
-        }
+        totalArray = [...totalArray.keys()].map((_e, eindex) => (eindex + 1));
     }
     /* handle onkeydowwn event */
     const handlekeydown = (e) => {
         if ((e.keyCode === 65) || (e.keyCode === 37)) {
-            setChangeCurrent(changeCurrent - 1);
             if (changeCurrent <= 1) {
                 setChangeCurrent(1);
+                return null;
             }
+            if (onChange) onChange(changeCurrent - 1, pageSize);
+            setChangeCurrent(changeCurrent - 1);
         }
         if ((e.keyCode === 68) || (e.keyCode === 39)) {
-            setChangeCurrent(changeCurrent + 1);
             if (changeCurrent >= totalArray.length) {
                 setChangeCurrent(totalArray.length);
+                return null;
             }
+            if (onChange) onChange(changeCurrent + 1, pageSize);
+            setChangeCurrent(changeCurrent + 1);
         }
         return null;
     };
     /* Add button element to array */
     function addButtonItemsElement(e, eKeyValue, checkActive) {
+        // return current button
         if (checkActive === true) {
             return (
                 <ButtonItem
                     variant={variant}
                     active
                     key={eKeyValue}
-                    onClick={handleFocusOnclick}
+                    onClick={event => handleFocusOnclick(event, eKeyValue)}
                 >
                     {e}
                 </ButtonItem>
             );
         }
+        // return button Previous
         if (eKeyValue === 'lessThan') {
-            // if (changeCurrent <= 1) {
-            //     return (
-            //         <ButtonItem
-            //             variant={variant}
-            //             isDisabled
-            //             onClick={handleFocusOnclick}
-            //         >
-            //             {e}
-            //         </ButtonItem>
-            //     );
-            // }
             return (
                 <ButtonItem
                     variant={variant}
                     key={eKeyValue}
                     onClick={handleFocusOnclick}
-                    isDisabled={isDisableValue}
-                    // onClick={(event) => {
-                    //     if (onChange) {
-                    //         onChange(changeCurrent - 1, pageSize);
-                    //     }
-                    //     setChangeCurrent(changeCurrent - 1);
-                    //     event.target.parentNode.focus();
-                    // }}
+                    isDisabled={changeCurrent <= 1}
                 >
                     {e}
                 </ButtonItem>
             );
         }
+        // return button Next
         if (eKeyValue === 'greaterThan') {
-            if (changeCurrent > totalArray.length - 1) {
-                return (
-                    <ButtonItem
-                        variant={variant}
-                        isDisabled
-                        onClick={handleFocusOnclick}
-                    >
-                        {e}
-                    </ButtonItem>
-                );
-            }
             return (
                 <ButtonItem
                     variant={variant}
                     key={eKeyValue}
-                    onClick={(event) => {
-                        if (onChange) {
-                            onChange(changeCurrent + 1, pageSize);
-                        }
-                        setIsDisableValue(false);
-                        setChangeCurrent(changeCurrent + 1);
-                        event.target.parentNode.focus();
-                    }}
+                    onClick={handleFocusOnclick}
+                    isDisabled={changeCurrent >= arrayLength}
                 >
                     {e}
                 </ButtonItem>
             );
         }
-        if (e === '...') return <ButtonItem variant={variant} key={eKeyValue} onClick={handleFocusOnclick}>{e}</ButtonItem>;
+        // return ellipsis items
+        if (e === '...') return <ButtonItem variant={variant} key={eKeyValue} ellipsis>{e}</ButtonItem>;
+        // return default button
         return (
             <ButtonItem
                 variant={variant}
                 key={eKeyValue}
-                onClick={(event) => {
-                    setChangeCurrent(eKeyValue + 1);
-                    event.target.parentNode.focus();
-                    if (onChange) {
-                        onChange(eKeyValue + 1, pageSize);
-                    }
-                }}
+                onClick={event => handleFocusOnclick(event, eKeyValue)}
             >
                 {e}
             </ButtonItem>
@@ -238,18 +201,24 @@ Pagination.defaultProps = {
     current: 1,
     pageSize: 10,
     variant: 'default',
+    total: null,
+    component: null,
+    onChange: null,
 };
 
-Pagination.propsType = {
-    // Type Number:
+Pagination.propTypes = {
+    /**  the active item in Pagination */
     current: PropsType.number,
+    /**  Number of item per page */
     pageSize: PropsType.number,
+    /**  total of Items */
     total: PropsType.number,
+    /**  defines max item render in browser */
     max: PropsType.number,
-    // Type String:
-    vaiant: PropsType.string,
-    // Custom pagination -- pass anything to render your pagination
-    component: PropsType.node,
-    // function onChange call wwhen current page changed
+    /**  define color in pagination */
+    variant: PropsType.string,
+    /** Custom pagination - Custom component to be rendered in the pagination. */
+    component: PropsType.func,
+    /** function onChange call wwhen current page changed */
     onChange: PropsType.func,
 };

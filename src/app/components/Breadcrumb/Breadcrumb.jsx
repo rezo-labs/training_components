@@ -1,4 +1,5 @@
 import React from 'react';
+import PropsType from 'prop-types';
 import { BreadcrumbItem, Separator, WrapBreadcrumb } from './style_Breadcrumb';
 
 export default function Breadcrumb(props) {
@@ -59,4 +60,23 @@ Breadcrumb.defaultProps = {
     separator: '/',
     isExpand: false,
     variant: 'default',
+    onExpand: null,
+    component: null,
+};
+Breadcrumb.propTypes = {
+    /** The separator default is /, but user can also custom separator */
+    separator: PropsType.node,
+    /** Shorten breadcrumb */
+    isExpand: PropsType.bool,
+    /** Set color for breadcrumb */
+    variant: PropsType.string,
+    /** event onClick when user click Ellipsis */
+    onExpand: PropsType.func,
+    /** user can custom render for breadcrumb, new render element will replace old one */
+    component: PropsType.func,
+    /** Routes is Array of Objects(href, name) to render items for breadcrumbs */
+    routes: PropsType.arrayOf(PropsType.shape({
+        href: PropsType.string.isRequired,
+        name: PropsType.string.isRequired,
+    })).isRequired,
 };

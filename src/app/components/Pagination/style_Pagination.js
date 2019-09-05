@@ -22,7 +22,7 @@ export const ButtonItem = styled.button`
     margin-right: 4px;
     font-weight: 400;
     font-size: 1.25rem;
-    cursor:pointer;
+    cursor:${props => (props.isDisabled || props.ellipsis ? '' : 'pointer')};
     background: ${props => (props.active ? '#007bff' : theme[props.variant][0])};
     color: ${props => (props.active ? 'white' : props.isDisabled ? theme.disabled : theme[props.variant][1])};
     border-radius: 3px;
