@@ -1,7 +1,7 @@
 Example:
-# **My Badge Component**: :kissing_smiling_eyes: 
+# **Badge Component**: :kissing_smiling_eyes: 
 :octocat: :octocat: :octocat: :octocat: :octocat: :octocat:
-## *Badge variant*
+## * 1. Badge variant*
 ```jsx
 <Badge variant="primary" clickable size="small" >Primary</Badge>
 <Badge variant="secondary" size="small" clickable >Secondary</Badge>
@@ -12,7 +12,7 @@ Example:
 <Badge variant="info" size="small" clickable >Info</Badge>
 <Badge variant="default" size="small" clickable >Default</Badge>
 ```
-## *Badge isInverted*
+## *2. Badge isInverted*
 ```jsx
 <Badge variant="primary" clickable size="small" isInverted>Primary</Badge>
 <Badge variant="secondary" size="small" clickable isInverted>Secondary</Badge>
@@ -23,18 +23,18 @@ Example:
 <Badge variant="info" size="small" clickable isInverted>Info</Badge>
 <Badge variant="default" size="small" clickable isInverted>Default</Badge>
 ```
-## *Badge size*
+## *3. Badge size*
 ```jsx
 <Badge variant="primary" clickable size="small" >Primary</Badge>
 <Badge variant="secondary" size="medium" clickable >Secondary</Badge>
 <Badge variant="warning" size="large" clickable >Warning</Badge>
 ```
-## *Badge type* 
+## *4. Badge type* 
 ```jsx
 <Badge variant="primary" size="medium" type='numeric' clickable >10000000</Badge>
 <Badge variant="secondary" size="medium" clickable type='tag' >Secondary</Badge>
 ```
-## *Badge clickable*
+## *5. Badge clickable*
 ```jsx
 <Badge variant="primary" size="medium" >Primary</Badge>
 <Badge variant="warning" size="medium" clickable >Warning</Badge>

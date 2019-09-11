@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
+import renderer from 'react-test-renderer';
 import Input from './Input';
 
 describe('Input', () => {
@@ -41,5 +41,9 @@ describe('Input', () => {
         const testInputOnMouseDown = mount(<Input type="text" onMouseDown={onMouseDown} />).find('input');
         testInputOnMouseDown.simulate('mousedown');
         expect(onMouseDown).toHaveBeenCalledTimes(1);
+    });
+    it('snapshot testing', () => {
+        const wrapper = renderer.create(<Input type="text" status="warning" label="snapshot's using label" helpText="helpText Snapshot testing" />).toJSON();
+        expect(wrapper).toMatchSnapshot();
     });
 });
