@@ -27,7 +27,6 @@ export const BadgeItem = styled.span`
     border: 2px solid ${props => (props.isInverted || props.variant === 'default' ? theme[props.variant][1] : '')};
     border-radius:6px;
     text-align:center;
-    margin-left:10px;
     max-width:${props => (props.maxLength ? `${props.maxLength}px` : '')};
     font-weight:650;
     overflow: hidden;

@@ -163,11 +163,11 @@ export default function Pagination(props) {
         return arrayButtonItems;
     }
     /* Handle error input */
-    if (current > total) {
-        console.error('Error: cannot set current > total');
+    if (current > arrayLength) {
+        console.error('Error: cannot set current greater than pagination length !');
         return (
             <HandleError>
-                {'Error: cannot set current >  total !'}
+                {'Error: cannot set current greater than pagination length !'}
             </HandleError>
         );
     }
